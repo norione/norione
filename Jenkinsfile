@@ -1,8 +1,8 @@
 pipeline {
   agent any
   environment {
-    BUILD_TIMEOUT = '10' // 单位：分钟
-	http_proxy = "http://192.168.72.1:7890"
+    BUILD_TIMEOUT = 10 
+    http_proxy = "http://192.168.72.1:7890"
     https_proxy = "http://192.168.72.1:7890"
   }
   options {
@@ -40,7 +40,7 @@ pipeline {
       emailext (
         subject: '🚨 构建失败：${JOB_NAME} - Build #${BUILD_NUMBER}',
         body: '详情请查看：${BUILD_URL}',
-        to: 'zcfnb@qq.com.com'
+        to: 'zcfnb@qq.com'
       )
     }
   }
