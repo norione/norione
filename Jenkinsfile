@@ -2,11 +2,21 @@ pipeline {
   agent any
   environment {
     BUILD_TIMEOUT = '10' // 单位：分钟
+	http_proxy = "http://192.168.72.1:7890"
+    https_proxy = "http://192.168.72.1:7890"
   }
   options {
     timeout(time: "${env.BUILD_TIMEOUT}", unit: 'MINUTES') 
   }
+  
   stages {
+    stage('Checkout') {
+    steps {
+      retry(3) {
+        checkout scm
+      }
+    }
+    }
     stage('Build') {
       steps {
         echo '✅ 开始构建！正在拉取代码...'
