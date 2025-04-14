@@ -2,8 +2,6 @@ pipeline {
   agent any
   environment {
     BUILD_TIMEOUT = 10 
-    http_proxy = "http://192.168.72.1:7890"
-    https_proxy = "http://192.168.72.1:7890"
   }
   options {
     timeout(time: env.BUILD_TIMEOUT, unit: 'MINUTES') 
